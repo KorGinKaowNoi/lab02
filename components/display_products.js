@@ -25,7 +25,9 @@ app.component('display_products',{
             
             <div v-for="(variant,index) in variants" :key="variant.id" @mouseover="updateVariant(index)" class="color-circle" :style="{backgroundColor:variant.color}">{{ variant.color}}</div>
             <button class=" button " :disabled="!inStock" @click="addToCart" :class="{disabled: !inStock}">Add to Cart</button>
-        </div>
+            <button class=" button " @click="remove">remove</button>
+
+            </div>
     </div>
 </div>
     `,
@@ -55,6 +57,9 @@ app.component('display_products',{
         },
         addToCart() {
             this.$emit('add-to-cart', this.variants[this.selected_item].id)
+        },
+        remove(){
+            this.$emit('remove_cart')
         }
     },
     computed:{

@@ -7,9 +7,11 @@ const app = Vue.createApp({
         }
     },
     methods: {
-    
         update_cart(id){
             this.cart.push(id);
+        },
+        remove_cart(){
+            this.cart.pop()
         }
         // updateImage(variantImage) {
         //     variantImage = this.variants[variantImage].image;
@@ -20,7 +22,7 @@ const app = Vue.createApp({
         // }
     },
     computed:{
-        // title(){
+        // title(){ 
         //     let onsale="";
         //     if(this.variants[this.selected_item].quantity>0){
         //         onsale="is on the sale"

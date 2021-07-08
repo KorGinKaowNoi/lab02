@@ -14,18 +14,17 @@
     <div id="app">
         <div class="nav-bar"></div>
 
-        <div class="cart">Cart({{ cart }})</div>
-        <display_products :premuim="premuim" @add-to-cart="update_cart"></display_products>
-        <display_details :details="details"></display_details>
+        <div class="cart">Cart({{cart.length}})</div>
+        <display_products :premuim="premuim" @add-to-cart="update_cart" @remove_cart="remove_cart"></display_products>
         <display_products ></display_products>
+        <review_form></review_form>
         
-        
-
     </div>
 
     <!-- Import Js -->
     <script src="./main.js "></script>
     <script src="/components/display_products.js"></script>
+    <script src="/components/review_form.js"></script>
     <script>
         const mountedApp = app.mount('#app')
     </script>
