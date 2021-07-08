@@ -3,7 +3,7 @@ const app = Vue.createApp({
         return {
             cart:[],
             premuim:true,
-            details:['50% cotton', '30% wool', '20% polyester']
+            details:['50% cotton', '30% wool', '20% polyester'],
         }
     },
     methods: {
@@ -13,6 +13,7 @@ const app = Vue.createApp({
         remove_cart(){
             this.cart.pop()
         }
+      
         // updateImage(variantImage) {
         //     variantImage = this.variants[variantImage].image;
         //     this.image = variantImage

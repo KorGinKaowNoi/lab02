@@ -26,10 +26,15 @@ app.component('display_products',{
             <div v-for="(variant,index) in variants" :key="variant.id" @mouseover="updateVariant(index)" class="color-circle" :style="{backgroundColor:variant.color}">{{ variant.color}}</div>
             <button class=" button " :disabled="!inStock" @click="addToCart" :class="{disabled: !inStock}">Add to Cart</button>
             <button class=" button " @click="remove">remove</button>
+            <review-list  :reviews="reviews"></review-list>    
+            <review-form @review-submitted="add_review"></review-form>
+               
+            
 
             </div>
     </div>
 </div>
+
     `,
     data() {
         return {
@@ -44,6 +49,7 @@ app.component('display_products',{
             selected_item:0,
             brand:"donut",
             is_onsale:true,
+            reviews:[]
             
 
         }
@@ -61,6 +67,10 @@ app.component('display_products',{
         },
         remove(){
             this.$emit('remove_cart')
+        },
+        add_review(review){
+            this.reviews.push(review)
+            console.log(review)
         }
     },
     computed:{
