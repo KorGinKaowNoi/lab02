@@ -1,5 +1,15 @@
 app.component('display_products',{
-    template: `
+    props:{
+        premuim:{
+            type:Boolean,
+            required: true
+        }
+    },
+
+
+    template: 
+    /*html*/
+    `
     <div class="product-display">
     <div class="product-container">
         <div class="product-image">
@@ -11,6 +21,7 @@ app.component('display_products',{
             <p v-if="inventory > 10">In Stock</p>
             <p v-else-if="inventory <= 10 && inventory > 0 || !inStock">In Stock</p>
             <p v-else>Out of Stock</p>
+            <p> shpping: {{shipping}} </p>
             <ul>
                 <li v-for="detail in details">{{ detail }}</li>
             </ul>
@@ -32,7 +43,6 @@ app.component('display_products',{
                 { id: 2234, color: 'green', image: './assets/images/socks_green.jpg',quantity:50 }
             ],
             selected_item:0,
-            cart: 0,
             brand:"donut",
             is_onsale:true
 
@@ -65,6 +75,14 @@ app.component('display_products',{
         },
         inStock(){
             return this.variants[this.selected_item].quantity;
+        },
+        shipping(){
+            if(this.premuim){
+                return "Free"
+            }
+            return 30
         }
     }
+    
+    
 })
