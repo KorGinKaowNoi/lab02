@@ -187,3 +187,8 @@ ul {
     background-color: #d8d8d8;
     cursor: not-allowed;
 }
+.oos{
+    display: none;
+    background-image: url(/assets/images/oos.png);
+    
+}
