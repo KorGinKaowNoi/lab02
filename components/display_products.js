@@ -43,7 +43,8 @@ app.component('display_products',{
             ],
             selected_item:0,
             brand:"donut",
-            is_onsale:true
+            is_onsale:true,
+            
 
         }
     },

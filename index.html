@@ -17,7 +17,7 @@
         <div class="cart">Cart({{cart.length}})</div>
         <display_products :premuim="premuim" @add-to-cart="update_cart" @remove_cart="remove_cart"></display_products>
         <display_products ></display_products>
-        <review_form></review_form>
+        <review_form @review-submitted="add_review"></review_form>
         
     </div>
 
