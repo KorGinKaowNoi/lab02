@@ -1,19 +1,7 @@
 const app = Vue.createApp({
     data() {
         return {
-            product: 'Shoes',
-            image: './assets/images/socks_green.jpg',
-            inStock: true ,
-            inventory: 100,
-            details: ['50% cotton', '30% wool', '20% polyester'],
-            variants: [
-                { id: 2234, color: 'green', image: './assets/images/socks_green.jpg',quantity:50 },
-                { id: 2235, color: 'blue', image: './assets/images/socks_blue.jpg',quantity:0 }
-            ],
-            selected_item:0,
-            cart: 0,
-            brand:"donut"
-
+            cart: 0
         }
     },
     methods: {
@@ -30,7 +18,13 @@ const app = Vue.createApp({
     },
     computed:{
         title(){
-            return this.brand+" "+this.product
+            let onsale="";
+            if(this.variants[this.selected_item].quantity>0){
+                onsale="is on the sale"
+            }else{
+                onsale="is not on the sale"
+            }
+            return this.brand+" "+this.product+" "+onsale
         },
         image(){
             return this.variants[this.selected_item].image;
