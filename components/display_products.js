@@ -1,6 +1,6 @@
 app.component('display_products',{
     props:{
-        premuim:{
+        preyemuim:{
             type:Boolean,
             required: true
         }
@@ -54,7 +54,7 @@ app.component('display_products',{
             this.selected_item=index
         },
         addToCart() {
-            this.$emit('add-to-cart')
+            this.$emit('add-to-cart', this.variants[this.selected_item].id)
         }
     },
     computed:{
@@ -93,13 +93,13 @@ app.component("display_details",{
     },
     template:
         /*html*/
-        `<p> details: {{show}} </p>`,
+        `<p v-for="word in show"> details: {{word}} </p>`,
         computed:{
             show(){
                 if(this.details){
                     return this.details;
                 }
-                return "this product has no details"
+                return ["no descriptions"]
             }
         },
 

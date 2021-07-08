@@ -1,15 +1,15 @@
 const app = Vue.createApp({
     data() {
         return {
-            cart:0,
+            cart:[],
             premuim:true,
             details:['50% cotton', '30% wool', '20% polyester']
         }
     },
     methods: {
     
-        update_cart(){
-            this.cart=this.cart+1;
+        update_cart(id){
+            this.cart.push(id);
         }
         // updateImage(variantImage) {
         //     variantImage = this.variants[variantImage].image;
