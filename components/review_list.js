@@ -16,9 +16,9 @@ app.component('review-list',{
     <br>
     "{{review.review}}"
     <br>
-    and this guy think "{{review.q}}" to reccomend
+    and this guy think "{{review.qn+""+review.qy}}" to reccomend
     </li>
-    <ul>
+    </ul>
     </div>
     `
 });

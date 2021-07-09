@@ -2,16 +2,16 @@ const app = Vue.createApp({
     data() {
         return {
             cart:[],
-            premuim:true,
-            details:['50% cotton', '30% wool', '20% polyester'],
+            premuim:true
         }
     },
     methods: {
         update_cart(id){
             this.cart.push(id);
         },
-        remove_cart(){
-            this.cart.pop()
+        remove_cart(id){
+            let index  = this.cart.indexOf(id);
+            this.cart.splice(index,1);
         }
       
         // updateImage(variantImage) {

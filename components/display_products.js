@@ -1,6 +1,6 @@
 app.component('display_products',{
     props:{
-        preyemuim:{
+        premuim:{
             type:Boolean,
             required: true
         }
@@ -13,8 +13,7 @@ app.component('display_products',{
     <div class="product-display">
     <div class="product-container">
         <div class="product-image">
-            <img :src="image" :class="{oos: !inStock}" >
-            <img src="/assets/images/oos.png" :class="{oos: inStock}" >
+            <img :src="image" :disabled="!is_onsale" :class="{'out-of-stock-img': !is_onsale}">
         </div>
         <div class="product-info">
             <h1>{{ title}}</h1>
@@ -22,7 +21,8 @@ app.component('display_products',{
             <p v-else-if="inventory <= 10 && inventory > 0 || !inStock">In Stock</p>
             <p v-else>Out of Stock</p>
             <p> shpping: {{shipping}} </p>
-            
+            <display_details :details="details"></display_details>
+
             <div v-for="(variant,index) in variants" :key="variant.id" @mouseover="updateVariant(index)" class="color-circle" :style="{backgroundColor:variant.color}">{{ variant.color}}</div>
             <button class=" button " :disabled="!inStock" @click="addToCart" :class="{disabled: !inStock}">Add to Cart</button>
             <button class=" button " @click="remove">remove</button>
@@ -48,9 +48,10 @@ app.component('display_products',{
             ],
             selected_item:0,
             brand:"donut",
-            is_onsale:true,
-            reviews:[]
-            
+            is_onsale:false,
+            reviews:[],
+            details:['50% cotton', '30% wool', '20% polyester'],
+
 
         }
     },
@@ -66,7 +67,7 @@ app.component('display_products',{
             this.$emit('add-to-cart', this.variants[this.selected_item].id)
         },
         remove(){
-            this.$emit('remove_cart')
+            this.$emit('remove_cart',this.variants[this.selected_item].id)
         },
         add_review(review){
             this.reviews.push(review)
@@ -78,8 +79,6 @@ app.component('display_products',{
             let onsale="";
             if(this.variants[this.selected_item].quantity>0){
                 onsale="is on the sale"
-            }else{
-                onsale="is not on the sale"
             }
             return this.brand+" "+this.product+" "+onsale
         },
@@ -96,28 +95,4 @@ app.component('display_products',{
             return 30
         }
     }
-});
-app.component("display_details",{
-    props:{
-        details:{
-            type:Array,
-            required:true
-        }
-    },
-    data(){
-        
-    },
-    template:
-        /*html*/
-        `<p v-for="word in show"> details: {{word}} </p>`,
-        computed:{
-            show(){
-                if(this.details){
-                    return this.details;
-                }
-                return ["no descriptions"]
-            }
-        },
-
-    
 });
